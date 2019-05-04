@@ -1,0 +1,4 @@
+.MealsContent {
+    display: flex;
+    flex-direction: row;
+}

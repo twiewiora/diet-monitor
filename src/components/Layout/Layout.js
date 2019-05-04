@@ -5,6 +5,8 @@ import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import './Layout.css';
 import Toolbar from '@material-ui/core/Toolbar';
+import MealsView from '../MealsView/MealsView';
+import StatsView from '../StatsView/StatsView';
 
 const Layout = () => {
   const [value, setValue] = useState(0);
@@ -17,10 +19,11 @@ const Layout = () => {
         </Toolbar>
       </AppBar>
       <Tabs fullWidth={true} value={value} onChange={(_, value) => setValue(value)}>
-        <Tab label="Item One" />
-        <Tab label="Item Two" />
+        <Tab label="Posiłki" />
+        <Tab label="Statystyki" />
       </Tabs>
-
+      {value === 0? <MealsView />: null}
+      {value === 1? <StatsView/>: null}
     </div>);
 };
 

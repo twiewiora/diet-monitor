@@ -1,0 +1,13 @@
+.ArrowDatePicker {
+    width: 350px;
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+}
+
+.ArrowDatePicker__element {
+    padding: 12px;
+    font-size: 14px;
+}

@@ -1,20 +1,26 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Card from '@material-ui/core/Card';
 import './MealsContent.css';
-import {Typography} from '@material-ui/core';
+import {ListItem, List, Typography} from '@material-ui/core';
+import MealContent from './MealContent/MealContent';
+import Divider from '@material-ui/core/Divider';
+import Hints from './Hints';
 
 const MealsContent = () => {
+  const [meals] = useState(['Śniadanie', 'Drugie Śniadanie', 'Obiad', 'Podwieczorek', 'Kolacja']);
+
   return (
     <Card className="MealsContent">
-        pies
-      <div>
-        <Typography variant="h5" gutterBottom>
-            h2. Heading
-        </Typography>
-        <Typography variant="h3" gutterBottom>
-            h3. Heading
-        </Typography>
-      </div>
+      <List className="Meals">
+        {meals.map((meal, index) =>
+          [
+            <ListItem key={meal + index + 'meal'}>
+              <MealContent title={meal}/>
+            </ListItem>,
+            <Divider key={meal + index + 'divider'} />
+          ])}
+      </List>
+      <Hints />
     </Card>
   );
 };

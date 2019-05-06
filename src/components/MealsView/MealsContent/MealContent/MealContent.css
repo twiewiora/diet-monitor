@@ -1,0 +1,13 @@
+.MealContent {
+    display: flex;
+    flex-direction: row;
+}
+
+.Ingredients {
+    display: flex;
+    flex-direction: row;
+}
+
+.Ingredient {
+    margin: 4px;
+}

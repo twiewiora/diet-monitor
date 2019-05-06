@@ -1,6 +1,6 @@
 import React from 'react';
 import './MealContent.css';
-import {ListItem, List, Typography} from '@material-ui/core';
+import {ListItem, List} from '@material-ui/core';
 import Smile from '@material-ui/icons/SentimentSatisfiedRounded';
 import Sad from '@material-ui/icons/SentimentDissatisfiedRounded';
 import More from '@material-ui/icons/MoreVertRounded';

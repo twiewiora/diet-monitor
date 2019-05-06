@@ -1,13 +1,30 @@
 .MealContent {
     display: flex;
+    flex-grow: 1;
     flex-direction: row;
+    align-items: center;
 }
 
 .Ingredients {
     display: flex;
+    flex-wrap: wrap;
     flex-direction: row;
 }
 
 .Ingredient {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
     margin: 4px;
+}
+
+.IngredientDescription {
+    display: flex;
+    flex-direction: column;
+    padding: 6px;
+}
+
+.IngredientControls {
+    display: flex;
+    flex-direction: column;
 }

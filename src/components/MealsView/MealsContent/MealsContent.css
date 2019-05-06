@@ -3,7 +3,7 @@
     flex-direction: row;
     height: calc(97% - 70px);
     min-width: 80%;
-    min-width: 90%;
+    max-width: 90%;
 }
 
 .Meals {

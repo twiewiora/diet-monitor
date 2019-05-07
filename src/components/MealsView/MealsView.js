@@ -27,7 +27,7 @@ class MealsView extends Component {
             <div className="MealsView">
                 <ArrowDatePicker />
                 <MealsContent updateStateCB={this.updateState1}/>
-                {modal}
+                //{modal}
             </div>
         );
     }

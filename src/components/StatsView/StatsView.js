@@ -13,9 +13,6 @@ class StatsView extends React.Component {
             axisY : {
                 title: "Wskaźnik zadowolnenia",
                 includeZero: false,
-                // labelFormatter: function() {
-                //     return '<img src="http://highcharts.com/demo/gfx/sun.png" alt="" style="vertical-align: middle; width: 32px; height: 32px"/>'+ this.value;
-                // },
             },
             toolTip: {
                 shared: true
@@ -41,38 +38,27 @@ class StatsView extends React.Component {
             title:{
                 text: "Spożycie składników spożywczych w ciągu dnia"
             },
-            axisX: {
-                // valueFormatString: "DDD"
-            },
-            axisY: {
-                // prefix: "$"
-            },
             toolTip: {
                 shared: true
             },
             legend:{
                 cursor: "pointer",
-                // itemclick: toggleDataSeries
             },
             data: [{
                 type: "stackedBar",
                 name: "Norma",
                 showInLegend: "true",
-                // xValueFormatString: "DD, MMM",
-                // yValueFormatString: "$#,##0",
                 dataPoints: [
-                    { x: "Białka", y: 130 },
-                    { x: "Tłuszcze", y: 95 },
+                    { label: "Białka", y: 130 },
+                    { label: "Tłuszcze", y: 95 },
                 ]
             },
                 {
                     type: "stackedBar",
                     name: "Pozwyżej normy",
                     showInLegend: "true",
-                    // xValueFormatString: "DD, MMM",
-                    // yValueFormatString: "$#,##0",
                     dataPoints: [
-                        { x: "Białka", y: 150 },
+                        { label: "Białka", y: 150 },
                     ]
                 },
             ]

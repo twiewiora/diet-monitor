@@ -1,5 +1,6 @@
 .ArrowDatePicker {
-    width: 350px;
+    width: 400px;
+    height: 150px;
     padding: 5px;
     display: flex;
     align-items: center;

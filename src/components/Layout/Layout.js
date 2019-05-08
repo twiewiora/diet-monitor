@@ -19,8 +19,8 @@ const Layout = () => {
         </Toolbar>
       </AppBar>
       <Tabs fullWidth={true} value={value} onChange={(_, value) => setValue(value)}>
-        <Tab label="Posiłki" />
-        <Tab label="Statystyki" />
+        <Tab label={<div className="TabHeader">Posiłki</div>}  />
+        <Tab label={<div className="TabHeader">Statystyki</div>} />
       </Tabs>
       {value === 0? <MealsView />: null}
       {value === 1? <StatsView/>: null}

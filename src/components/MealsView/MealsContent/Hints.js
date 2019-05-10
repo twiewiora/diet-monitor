@@ -6,7 +6,7 @@ const MealsContent = () => {
 
   return (
     <div className="Hints">
-      <Typography variant='h5' gutterBottom>Podpowiedzi:</Typography>
+      <Typography variant='h5' gutterBottom style={{fontWeight: 'bold'}}>Podpowiedzi:</Typography>
       <Typography variant='subtitle1'>- Zjedz więcej białka</Typography>
       <Typography variant='subtitle1'>- Pójdź pobiegać</Typography>
       <Typography variant='subtitle1'>- Odmów sobie czekolady</Typography>

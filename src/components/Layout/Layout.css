@@ -3,3 +3,9 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.TabHeader {
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: capitalize;
+}

@@ -50,7 +50,7 @@ const DialogContent = withStyles(theme => ({
 const DialogActions = withStyles(theme => ({
   root: {
     borderTop: `1px solid ${theme.palette.divider}`,
-    margin: 0 ,
+    margin: '10px',
     padding: theme.spacing.unit,
   },
 }))(MuiDialogActions);
@@ -159,12 +159,28 @@ class SimpleModal extends React.Component {
             </ListItem>
           </List>
           <DialogActions>
-            <Fab onClick={this.handleOK} color="primary" aria-label="ok" className={classes.fab}>
-                OK
-            </Fab>
-            <Fab onClick={this.handleClose} color="secondary" aria-label="anuluj" className={classes.fab}>
-                ANULUJ
-            </Fab>
+            <Grid container justify="center" 
+                      alignItems="center" 
+                      direction="row" 
+                      spacing="32"
+                      className={classes.grid}>
+              <Grid item>
+                <Fab onClick={this.handleOK} 
+                    color="primary" 
+                    aria-label="ok" 
+                    className={classes.fab}>
+                  OK
+                </Fab>
+              </Grid>
+              <Grid item>
+                <Fab onClick={this.handleClose} 
+                    color="secondary" 
+                    aria-label="anuluj" 
+                    className={classes.fab}>
+                  ANULUJ
+                </Fab>
+              </Grid>
+            </Grid>
           </DialogActions>
 </Dialog>
       </div>

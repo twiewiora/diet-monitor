@@ -36,7 +36,7 @@ class StatsView extends React.Component {
         dataPoints: [
           { y: 30, label: '0:00' },
           { y: 30, label: '7:00' },
-          { y: 100, label: '12:00' },
+          { y: 90, label: '12:00' },
           { y: 100, label: '15:00' },
           { y: 77, label: '17:00' },
           { y: 66, label: '20:00' },
@@ -120,14 +120,8 @@ class StatsView extends React.Component {
           <Row>
             <Col sm={12} xl={6}>
               <div className="mr-5">
-
+                <h4>Potencjalne nietolerancje</h4>
                 <Table>
-                  <TableHead>
-                    <TableRow align="left">
-                      Potencjalne nietolerancje
-                    </TableRow>
-
-                  </TableHead>
                   <TableBody>
                     <TableRow>
                       <TableCell align="center" bgcolor="yellow" >Zwróć uwagę</TableCell>
@@ -148,13 +142,9 @@ class StatsView extends React.Component {
             </Col>
             <Col sm={12} xl={6}>
               <div className="ml-5">
-
+                <h4>Samopoczucie a spozywane posilki</h4>
                 <Table>
                   <TableHead>
-                    <TableRow alli="left">
-                      Samopoczucie a spozywane posilki
-                    </TableRow>
-
                   </TableHead>
                   <TableBody>
                     <TableRow>

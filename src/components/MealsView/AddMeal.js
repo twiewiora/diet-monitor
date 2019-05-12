@@ -86,7 +86,7 @@ class SimpleModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            items: ["pierwszy", "drugi"]
+            itemsCount: 0
         }
     }
 
@@ -95,13 +95,13 @@ class SimpleModal extends React.Component {
   };
 
   handleOK = () => {
+    this.props.updateStateCB(false);
   }
 
-  addItem(e) {
+  addItem = (e) => {
       e.preventDefault();
-      const {items} = this.state;
       this.setState({
-          items: [...this.state.items, "alal123"]
+          itemsCount: this.state.itemsCount + 1
       })
   }
 
@@ -121,12 +121,13 @@ class SimpleModal extends React.Component {
           <DialogContent>
             <List component="nav">
             <ListItem button>
-              <ListItemText primary="Czas posilku" />
+              <ListItemText primary="Czas posiłku" />
               <ListItemIcon>
                 <MaterialUIPickers/>
               </ListItemIcon>
             </ListItem>
-                  {this.state.items.map((item, index) =>
+                  {Array.apply(null, {length: this.state.itemsCount}).
+                  map((item, index) =>
                     [
                         <ListItem button>
                         <ListItem>
@@ -138,7 +139,10 @@ class SimpleModal extends React.Component {
           <Divider />
           <List component="nav">
             <ListItem>
-                <Button variant="contained" color="secondary" className={classes.button}>
+                <Button variant="contained" 
+                        color="secondary" 
+                        className={classes.button}
+                        onClick={this.addItem}>
                     Dodaj
                  </Button>
             </ListItem>

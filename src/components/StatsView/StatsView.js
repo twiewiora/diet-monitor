@@ -9,6 +9,8 @@ import CanvasJSReact from '../../canvasjs-2.3.1/canvasjs.react';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import 'bootstrap/dist/css/bootstrap.css';
+import DateRangePicker from './RangePicker'
+import Grid from '@material-ui/core/Grid';
 import 'bootstrap/dist/css/bootstrap-grid.css';
 import './StatsView.css';
 
@@ -96,6 +98,11 @@ class StatsView extends React.Component {
 
       <div>
         <Container>
+          <div class="row justify-content-center">
+            <div className="DateRangePicker">
+                  <DateRangePicker/>
+            </div>
+          </div>
           <Row>
             <Col sm={12} xl={6}>
               <div className="mr-5">

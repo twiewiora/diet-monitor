@@ -137,17 +137,27 @@ class SimpleModal extends React.Component {
                     ])}
           </List>
           <Divider />
+          </DialogContent>
           <List component="nav">
-            <ListItem>
-                <Button variant="contained" 
-                        color="secondary" 
-                        className={classes.button}
-                        onClick={this.addItem}>
-                    Dodaj
-                 </Button>
+            <ListItem alignItem="center">
+                <Grid container justify="center" 
+                      alignItems="center" 
+                      direction="row" 
+                      className={classes.grid}>
+                  <Grid item>
+                    <Button variant="contained" 
+                            color="secondary"
+                            className={classes.button}
+                            justify="center" 
+                            alignItems="center" 
+                            direction="row" 
+                            onClick={this.addItem}>
+                        Dodaj
+                    </Button>
+                  </Grid>
+                </Grid>
             </ListItem>
           </List>
-          </DialogContent>
           <DialogActions>
             <Fab onClick={this.handleOK} color="primary" aria-label="ok" className={classes.fab}>
                 OK

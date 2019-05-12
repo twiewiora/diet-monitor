@@ -25,20 +25,20 @@ class MaterialUIDayPickers extends React.Component {
     const { selectedDate } = this.state;
 
     return (
-      <MuiPickersUtilsProvider utils={DateFnsUtils}>
-        <Grid container justify="flex-start" 
-                        alignItems="center" 
-                        direction="row" 
-                        className={classes.grid}>
-          <DatePicker
-            margin="normal"
-            label="Date picker"
-            value={selectedDate}
-            direction="row"
-            onChange={this.handleDateChange}
-          />
-        </Grid>
-      </MuiPickersUtilsProvider>
+        <MuiPickersUtilsProvider utils={DateFnsUtils}>
+          <Grid container justify="flex-start" 
+                          alignItems="center" 
+                          direction="row" 
+                          className={classes.grid}>
+            <DatePicker
+              margin="normal"
+              label={this.props.title}
+              value={selectedDate}
+              direction="row"
+              onChange={this.handleDateChange}
+            />
+          </Grid>
+        </MuiPickersUtilsProvider>
     );
   }
 }

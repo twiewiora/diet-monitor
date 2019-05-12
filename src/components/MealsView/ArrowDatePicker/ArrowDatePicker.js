@@ -21,7 +21,7 @@ class ArrowDatePicker extends React.Component {
     render() {
       return (
           <div className="ArrowDatePicker">
-            <MaterialUIDayPicker/>
+            <MaterialUIDayPicker title={"Dzień"}/>
           </div>);
     }
 

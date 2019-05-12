@@ -108,7 +108,7 @@ class SimpleModal extends React.Component {
           open={this.props.showModalAddMeal}
         >
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            Posilek
+            Posiłek
           </DialogTitle>
           <DialogContent>
             <List component="nav">
@@ -154,7 +154,7 @@ class SimpleModal extends React.Component {
             <Grid container justify="center" 
                       alignItems="center" 
                       direction="row" 
-                      spacing="32"
+                      justify="space-evenly"
                       className={classes.grid}>
               <Grid item>
                 <Fab onClick={this.handleOK} 

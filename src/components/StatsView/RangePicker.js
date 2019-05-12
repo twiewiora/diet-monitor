@@ -17,10 +17,10 @@ class DateRangePicker extends Component {
                       direction="row"
                       spacing="1">
           <Grid item>
-          <MaterialUIDayPickers title="Od"/>
+          <MaterialUIDayPickers title="Statystyki od"/>
           </Grid>
           <Grid item>
-          <MaterialUIDayPickers title="Do"/>
+          <MaterialUIDayPickers title="Statystyki do"/>
           </Grid>
         </Grid>
       </div>

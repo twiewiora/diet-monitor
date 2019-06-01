@@ -19,27 +19,9 @@ class MealContent extends Component {
         this.props.updateStateCB(true);
     };
 
-    chooseWeights = (no) => {
-        const res = [];
-        for (let i = 0; i < no; i++) {
-            res.push(Math.trunc(Math.random() * 2000) + 'g');
-        }
-        return res;
-    };
-
-    chooseNames = (no) => {
-        const names = ['owsianka', 'jogurt naturalny', 'kotlet schabowy', 'ziemniaki z zasmażką', 'banan', 'jabłko', 'spaghetti'];
-        const res = [];
-        for (let i = 0; i < no; i++) {
-            res.push(names[Math.trunc(Math.random() * 7)]);
-        }
-        return res;
-    };
-
     render() {
-      const ingredientsNumber = 1 + Math.trunc(Math.random() * 7);
-      const chosenNames = this.chooseNames(ingredientsNumber);
-      const chosenWeights = this.chooseWeights(ingredientsNumber);
+        const ingredients =  this.props.meal? this.props.meal.ingredients: [];
+
       return (
         <div className="MealContent">
           <RateStrip />
@@ -48,11 +30,12 @@ class MealContent extends Component {
               <Typography gutterBottom variant='h6' style={{fontWeight: 'bold'}} >{this.state.title}</Typography>
             </div>
             <div className="Ingredients">
-              {chosenNames.map((name, index) =>
+              {ingredients.map(({name, weight}, index) =>
                 <IngredientCard
                   name={name}
-                  weight={chosenWeights[index]}
-                  key={name + index + chosenWeights[index]}
+                  weight={weight}
+                  key={name + index + weight}
+                  onRemove={() => this.props.onRemove(index)}
                 />)
               }
 

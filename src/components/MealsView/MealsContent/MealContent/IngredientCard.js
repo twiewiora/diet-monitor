@@ -6,7 +6,7 @@ import Remove from '@material-ui/icons/RemoveCircleRounded';
 import IconButton from '@material-ui/core/IconButton';
 import PropTypes from 'prop-types';
 
-const IngredientCard = ({name, weight}) => {
+const IngredientCard = ({name, weight, onRemove}) => {
   return (
     <Card className="Ingredient">
       <div className="IngredientDescription">
@@ -15,7 +15,7 @@ const IngredientCard = ({name, weight}) => {
       </div>
 
       <div className="IngredientControls">
-        <IconButton color='secondary'>
+        <IconButton color='secondary' onClick={onRemove}>
           <Remove />
         </IconButton>
         <IconButton color='primary'>
@@ -29,6 +29,7 @@ const IngredientCard = ({name, weight}) => {
 IngredientCard.propTypes = {
   name: PropTypes.string.isRequired,
   weight: PropTypes.string.isRequired,
+  onRemove: PropTypes.func.isRequired
 };
 
 

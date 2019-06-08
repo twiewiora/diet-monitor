@@ -9,13 +9,12 @@ import Dialog from '@material-ui/core/Dialog';
 import MuiDialogTitle from '@material-ui/core/DialogTitle';
 import MuiDialogContent from '@material-ui/core/DialogContent';
 import MuiDialogActions from '@material-ui/core/DialogActions';
-import MaterialUIPickers from './MaterialUIPickers';
-import List from '@material-ui/core/List';
-import ListItem from '@material-ui/core/ListItem';
-import ListItemIcon from '@material-ui/core/ListItemIcon';
-import ListItemText from '@material-ui/core/ListItemText';
-import Divider from '@material-ui/core/Divider';
-import BootstrapInput from "./Meal"
+import Form from "react-bootstrap/Form";
+import FormGroup from "react-bootstrap/es/FormGroup";
+import FormLabel from "react-bootstrap/es/FormLabel";
+import FormControl from "react-bootstrap/es/FormControl";
+import {ADD_MEAL} from "../../store/actions/actionType";
+import connect from "react-redux/es/connect/connect";
 
 const DialogTitle = withStyles(theme => ({
   root: {
@@ -47,22 +46,6 @@ const DialogActions = withStyles(theme => ({
   },
 }))(MuiDialogActions);
 
-
-function rand() {
-  return Math.round(Math.random() * 20) - 10;
-}
-
-function getModalStyle() {
-  const top = 50 + rand();
-  const left = 50 + rand();
-
-  return {
-    top: `${top}%`,
-    left: `${left}%`,
-    transform: `translate(-${top}%, -${left}%)`,
-  };
-}
-
 const styles = theme => ({
   paper: {
     position: 'absolute',
@@ -78,27 +61,63 @@ class SimpleModal extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemsCount: 0
+            currentIngName: 'Banan',
+            currentIngWeight: '',
+            ingredientsList: []
         }
+
     }
 
   handleClose = () => {
-    this.props.updateStateCB(false);
+      this.setState({
+          ingredientsList: [],
+          currentIngName: 'Banan',
+          currentIngWeight: ''
+      });
+      this.props.updateStateCB(false);
   };
 
   handleOK = () => {
-    this.props.updateStateCB(false);
-  }
-
-  addItem = (e) => {
-      e.preventDefault();
+      const currentDateText = this.props.date;
+      const meal = {
+          day: currentDateText,
+          meal: 0,
+          ingredients: this.state.ingredientsList
+      };
+      this.props.onMealAdded(meal);
       this.setState({
-          itemsCount: this.state.itemsCount + 1
-      })
+          ingredientsList: [],
+          currentIngName: 'Banan',
+          currentIngWeight: ''
+      });
+      this.props.updateStateCB(false);
+  };
+
+  handleNameChange(event) {
+    this.setState({
+        currentIngName: event.target.value
+    })
+  };
+
+  handleWeightChange(event) {
+    this.setState({
+        currentIngWeight: event.target.value
+    })
+  };
+
+  addIngredients() {
+      const ingredient = {
+          name: this.state.currentIngName,
+          weight: this.state.currentIngWeight
+      };
+      this.setState({
+          ingredientsList: [...this.state.ingredientsList, ingredient]
+      });
   }
 
   render() {
     const { classes } = this.props;
+    const ingredients = ['Banan', 'Jabłko', 'Musli', 'Jogurt naturalny', 'Pizza'];
 
     return (
       <div>
@@ -108,73 +127,36 @@ class SimpleModal extends React.Component {
           open={this.props.showModalAddMeal}
         >
           <DialogTitle id="customized-dialog-title" onClose={this.handleClose}>
-            Posiłek
+            Nowy Posiłek
           </DialogTitle>
           <DialogContent>
-            <List component="nav">
-            <ListItem button>
-              <ListItemText primary="Czas posiłku" />
-              <ListItemIcon>
-                <MaterialUIPickers/>
-              </ListItemIcon>
-            </ListItem>
-                  {Array.apply(null, {length: this.state.itemsCount}).
-                  map((item, index) =>
-                    [
-                        <ListItem button>
-                        <ListItem>
-                        <BootstrapInput/>
-                        </ListItem>
-                        </ListItem>
-                    ])}
-          </List>
-          <Divider />
+            <Form>
+                <FormGroup controlId="selectIngredients">
+                    <FormLabel>Posiłek</FormLabel>
+                    <FormControl as="select" onChange={(e) => this.handleNameChange(e)}>
+                        {ingredients.map((ingredient) => [
+                            <option>{ingredient}</option>
+                        ])}
+                    </FormControl>
+                </FormGroup>
+                <FormGroup controlId="ingredientsWeight">
+                    <FormLabel>Waga posiłku</FormLabel>
+                    <FormControl type="text" placeholder="waga (g)" onChange={(e) => this.handleWeightChange(e)}/>
+                </FormGroup>
+                <Button variant="contained" color="primary" onClick={() => this.addIngredients()}>Dodaj posiłek</Button>
+            </Form>
           </DialogContent>
-          <List component="nav">
-            <ListItem alignItem="center">
-                <Grid container justify="center" 
-                      alignItems="center" 
-                      direction="row" 
-                      className={classes.grid}>
-                  <Grid item>
-                    <Button variant="contained" 
-                            color="secondary"
-                            className={classes.button}
-                            justify="center" 
-                            alignItems="center" 
-                            direction="row" 
-                            onClick={this.addItem}>
-                        Dodaj
-                    </Button>
-                  </Grid>
-                </Grid>
-            </ListItem>
-          </List>
           <DialogActions>
-            <Grid container justify="center" 
-                      alignItems="center" 
-                      direction="row" 
-                      justify="space-evenly"
-                      className={classes.grid}>
+            <Grid container justify="center" alignItems="center" direction="row" justify="space-evenly" className={classes.grid}>
               <Grid item>
-                <Fab onClick={this.handleOK} 
-                    color="primary" 
-                    aria-label="ok" 
-                    className={classes.fab}>
-                  OK
-                </Fab>
+                <Fab onClick={this.handleOK} color="primary" aria-label="ok" className={classes.fab}>OK</Fab>
               </Grid>
               <Grid item>
-                <Fab onClick={this.handleClose} 
-                    color="secondary" 
-                    aria-label="anuluj" 
-                    className={classes.fab}>
-                  ANULUJ
-                </Fab>
+                <Fab onClick={this.handleClose} color="secondary" aria-label="anuluj" className={classes.fab}>ANULUJ</Fab>
               </Grid>
             </Grid>
           </DialogActions>
-</Dialog>
+        </Dialog>
       </div>
     );
   }
@@ -186,4 +168,16 @@ SimpleModal.propTypes = {
 
 const SimpleModalWrapped = withStyles(styles)(SimpleModal);
 
-export default SimpleModalWrapped;
+const mapStateToProps = state => {
+    return {
+        meals: state.meals
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onMealAdded: (meal) => dispatch({type: ADD_MEAL, path: [meal]})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(SimpleModalWrapped);

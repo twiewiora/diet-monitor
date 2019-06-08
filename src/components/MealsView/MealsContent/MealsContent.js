@@ -5,7 +5,7 @@ import {ListItem, List} from '@material-ui/core';
 import MealContent from './MealContent/MealContent';
 import Divider from '@material-ui/core/Divider';
 import Hints from './Hints';
-import {REMOVE_INGREDIENT} from '../../../store/actions/action';
+import {REMOVE_INGREDIENT} from '../../../store/actions/actionType';
 import {connect} from 'react-redux';
 
 class MealsContent extends Component {
@@ -16,12 +16,12 @@ class MealsContent extends Component {
 
   findMeal = (dayMeals, no) => {
     return dayMeals.find(meal => meal.meal === no);
-  }
+  };
 
   findIndex = ({day, meal}) => {
     const meals = this.props.meals;
     return meals.findIndex(elem => elem.day === day && elem.meal === meal);
-  }
+  };
 
   render() {
       const now = this.props.date;
@@ -48,12 +48,10 @@ class MealsContent extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   return {
     meals: state.meals
   };
-
 };
 
 const mapDispatchToProps = dispatch => {
@@ -61,6 +59,5 @@ const mapDispatchToProps = dispatch => {
     onIngredientRemoved: (meal, ing) => dispatch({type: REMOVE_INGREDIENT, path: [meal, ing]})
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(MealsContent);

@@ -50,7 +50,8 @@ const styles = theme => ({
 
 class CustomizedSelects extends React.Component {
   state = {
-    age: '',
+      age: '',
+      weight: 0
   };
 
   handleChange = event => {

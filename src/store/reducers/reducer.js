@@ -1,9 +1,10 @@
-import {ADD_MEAL, EDIT_MEAL, REMOVE_INGREDIENT} from '../actions/actionType';
+import {ADD_MEAL, CHECK_MOOD, EDIT_MEAL, REMOVE_INGREDIENT} from '../actions/actionType';
 
 export const initialState = {
   meals: [{
     day: '2019-06-01',
     meal: 0,
+    mood: 0,
     ingredients: [
       {name: 'spaghetti', weight: '100g'},
       {name: 'ziemniaki', weight: '200g'},
@@ -13,6 +14,7 @@ export const initialState = {
   {
     day: '2019-06-02',
     meal: 1,
+    mood: 1,
     ingredients: [
       {name: 'spaghetti', weight: '100g'},
       {name: 'ziemniaki', weight: '200g'},
@@ -22,6 +24,7 @@ export const initialState = {
   {
     day: '2019-06-01',
     meal: 2,
+    mood: 2,
     ingredients: [
       {name: 'spaghetti', weight: '100g'},
       {name: 'ziemniaki', weight: '200g'},
@@ -70,6 +73,19 @@ const editMeal = (state, action) => {
     return {...state, meals: newMeals};
 };
 
+const checkMood = (state, action) => {
+    if (action.path[0] === undefined) {
+        return {...state, meals: state.meals}
+    }
+    const meal = state.meals[findIndex(state, action.path[0].day, action.path[0].meal)];
+    let newMeals = [];
+    if (meal) {
+        meal.mood = action.path[1];
+        newMeals = [...state.meals, '']
+    }
+    return {...state, meals: newMeals};
+};
+
 const reducer = (state, action) => {
     switch (action.type) {
       case REMOVE_INGREDIENT:
@@ -78,6 +94,8 @@ const reducer = (state, action) => {
           return addMeal(state, action);
       case EDIT_MEAL:
           return editMeal(state, action);
+      case CHECK_MOOD:
+          return checkMood(state, action);
       default:
         return state;
   }

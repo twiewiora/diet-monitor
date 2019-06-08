@@ -1,28 +1,61 @@
-import React from 'react';
+import React, {Component} from 'react';
 import './MealContent.css';
 import {ListItem, List} from '@material-ui/core';
 import Smile from '@material-ui/icons/SentimentSatisfiedRounded';
 import Sad from '@material-ui/icons/SentimentDissatisfiedRounded';
 import More from '@material-ui/icons/MoreVertRounded';
+import {CHECK_MOOD} from "../../../../store/actions/actionType";
+import connect from "react-redux/es/connect/connect";
 
-const RateStrip = () => {
-  return (
-    <List dense>
-      <ListItem button>
-        <Smile />
-      </ListItem>
-      <ListItem button>
-        <MehFace />
-      </ListItem>
-      <ListItem button>
-        <Sad />
-      </ListItem>
-      <ListItem button>
-        <More />
-      </ListItem>
-    </List>
-  );
-};
+class RateStrip extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            checkedMood: 0
+        }
+    }
+
+    changeMood (value) {
+        this.setState({
+            checkedMood: this.state.checkedMood === value ? 0 : value
+        });
+        this.props.onMoodCheck(this.props.meal, this.state.checkedMood)
+    }
+
+    setMood (value) {
+        this.setState({
+            checkedMood: value
+        })
+    }
+
+    render() {
+        this.setState({
+            checkedMood: this.props.meal ? this.props.meal.mood : 0
+        });
+        const goodColor = '#37d155';
+        const mehColor = '#d17d1f';
+        const badColor = '#d1423f';
+
+        return (
+            <List dense>
+                <ListItem button onClick={() => this.changeMood(1)}>
+                    <Smile style={{borderRadius:'50%', background: this.state.checkedMood === 1 ? goodColor : '#FFFFFF'}}/>
+                </ListItem>
+                <ListItem button onClick={() => this.changeMood(2)} >
+                    <div style={{borderRadius:'50%', background: this.state.checkedMood === 2 ? mehColor : '#FFFFFF'}}>
+                        <MehFace/>
+                    </div>
+                </ListItem>
+                <ListItem button onClick={() => this.changeMood(3)}>
+                    <Sad style={{borderRadius:'50%', background: this.state.checkedMood === 3 ? badColor : '#FFFFFF'}}/>
+                </ListItem>
+                <ListItem button>
+                    <More />
+                </ListItem>
+            </List>
+        );
+    }
+}
 
 const MehFace = () => {
     return (
@@ -32,4 +65,16 @@ const MehFace = () => {
     )
 };
 
-export default RateStrip;
+const mapStateToProps = state => {
+    return {
+        meals: state.meals
+    };
+};
+
+const mapDispatchToProps = dispatch => {
+    return {
+        onMoodCheck: (meal, moodId) => dispatch({type: CHECK_MOOD, path: [meal, moodId]})
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(RateStrip);

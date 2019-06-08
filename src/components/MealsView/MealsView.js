@@ -9,14 +9,21 @@ class MealsView extends Component {
         super(props);
         this.state = {
             showModalAddMeal: false,
+            addMealAs: 0,
             date: new Date()
         };
     }
 
-    updateState1 = (v) => {
+    updateState = (visible) => {
         this.setState({
-            showModalAddMeal: v
+            showModalAddMeal: visible
         });
+    };
+
+    setMeal = (mealNo) => {
+        this.setState({
+            addMealAs: mealNo
+        })
     };
 
     onDateChange = (date) => {
@@ -27,8 +34,8 @@ class MealsView extends Component {
         return (
             <div className="MealsView">
                 <ArrowDatePicker date={this.state.date} onDateChange={this.onDateChange}/>
-                <MealsContent updateStateCB={this.updateState1} date={this.state.date.toISOString().slice(0,10)}/>
-                <SimpleModalWrapper showModalAddMeal={this.state.showModalAddMeal} updateStateCB={this.updateState1} date={this.state.date.toISOString().slice(0,10)} />
+                <MealsContent updateStateCB={this.updateState} date={this.state.date.toISOString().slice(0,10)} setMeal={this.setMeal}/>
+                <SimpleModalWrapper mealIndex={this.state.addMealAs} showModalAddMeal={this.state.showModalAddMeal} updateStateCB={this.updateState} date={this.state.date.toISOString().slice(0,10)} />
             </div>
         );
     }

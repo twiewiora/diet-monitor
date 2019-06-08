@@ -81,7 +81,7 @@ class SimpleModal extends React.Component {
       const currentDateText = this.props.date;
       const meal = {
           day: currentDateText,
-          meal: 0,
+          meal: this.props.mealIndex,
           ingredients: this.state.ingredientsList
       };
       this.props.onMealAdded(meal);

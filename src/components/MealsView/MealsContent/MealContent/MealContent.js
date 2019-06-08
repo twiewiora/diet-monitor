@@ -17,6 +17,7 @@ class MealContent extends Component {
     onItemClick1 = () => {
         console.log('The link was clicked.');
         this.props.updateStateCB(true);
+        this.props.setMeal(this.props.index);
     };
 
     render() {

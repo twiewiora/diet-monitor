@@ -33,7 +33,7 @@ class MealsContent extends Component {
             {this.meals.map((meal, index) =>
               [
                 <ListItem key={meal + index + 'meal'}>
-                  <MealContent title={meal} updateStateCB={this.props.updateStateCB}
+                  <MealContent title={meal} updateStateCB={this.props.updateStateCB} setMeal={this.props.setMeal} index={index}
                     meal={this.findMeal(dayMeals,index)}
                     onRemove={(pos) => this.props.onIngredientRemoved(this.findIndex(this.findMeal(dayMeals, index)), pos)}
                   />

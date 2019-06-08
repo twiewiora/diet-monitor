@@ -15,7 +15,6 @@ class MealContent extends Component {
     }
 
     onItemClick1 = () => {
-        console.log('The link was clicked.');
         this.props.updateStateCB(true);
         this.props.setMeal(this.props.index);
     };
@@ -37,6 +36,7 @@ class MealContent extends Component {
                   weight={weight}
                   key={name + index + weight}
                   onRemove={() => this.props.onRemove(index)}
+                  onEdit={()  => this.props.onEdit(index)}
                 />)
               }
 

@@ -1,5 +1,4 @@
-import {ADD_MEAL, REMOVE_INGREDIENT} from '../actions/actionType';
-import cloneDeep from 'lodash/cloneDeep';
+import {ADD_MEAL, EDIT_MEAL, REMOVE_INGREDIENT} from '../actions/actionType';
 
 export const initialState = {
   meals: [{
@@ -60,12 +59,25 @@ const addMeal = (state, action) => {
     return {...state, meals: newMeals};
 };
 
+const editMeal = (state, action) => {
+    const meal = state.meals[findIndex(state, action.path[0].day, action.path[0].meal)];
+    let newMeals = [];
+    if (meal) {
+        meal.ingredients[action.path[2]].name = action.path[1].name;
+        meal.ingredients[action.path[2]].weight = action.path[1].weight;
+        newMeals = [...state.meals, '']
+    }
+    return {...state, meals: newMeals};
+};
+
 const reducer = (state, action) => {
     switch (action.type) {
       case REMOVE_INGREDIENT:
           return removeIngredient(state, action);
       case ADD_MEAL:
           return addMeal(state, action);
+      case EDIT_MEAL:
+          return editMeal(state, action);
       default:
         return state;
   }

@@ -18,12 +18,14 @@ const Layout = () => {
           <MenuIcon/>
         </Toolbar>
       </AppBar>
-      <Tabs fullWidth={true} value={value} onChange={(_, value) => setValue(value)}>
-        <Tab label={<div className="TabHeader">Posiłki</div>}  />
-        <Tab label={<div className="TabHeader">Statystyki</div>} />
-      </Tabs>
-      {value === 0? <MealsView />: null}
-      {value === 1? <StatsView/>: null}
+      <div className='MainContent'>
+        <Tabs fullWidth={true} value={value} onChange={(_, value) => setValue(value)}>
+          <Tab label={<div className="TabHeader">Posiłki</div>}  />
+          <Tab label={<div className="TabHeader">Statystyki</div>} />
+        </Tabs>
+        {value === 0? <MealsView />: null}
+        {value === 1? <StatsView/>: null}
+      </div>
     </div>);
 };
 

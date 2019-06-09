@@ -12,7 +12,7 @@ class RateStrip extends Component {
         super(props);
         this.state = {
             checkedMood: 0
-        }
+        };
     }
 
     changeMood (value) {
@@ -22,20 +22,10 @@ class RateStrip extends Component {
         this.props.onMoodCheck(this.props.meal, this.state.checkedMood)
     }
 
-    setMood (value) {
-        this.setState({
-            checkedMood: value
-        })
-    }
-
     render() {
-        this.setState({
-            checkedMood: this.props.meal ? this.props.meal.mood : 0
-        });
         const goodColor = '#37d155';
         const mehColor = '#d17d1f';
         const badColor = '#d1423f';
-
         return (
             <List dense>
                 <ListItem button onClick={() => this.changeMood(1)}>

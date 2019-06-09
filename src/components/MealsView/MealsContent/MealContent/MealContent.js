@@ -20,11 +20,10 @@ class MealContent extends Component {
     };
 
     render() {
-        const ingredients =  this.props.meal? this.props.meal.ingredients: [];
-
+      const ingredients =  this.props.meal? this.props.meal.ingredients: [];
       return (
         <div className="MealContent">
-          <RateStrip />
+          <RateStrip meal={this.props.meal}/>
           <div style={{flexGrow: '1'}}>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <Typography gutterBottom variant='h6' style={{fontWeight: 'bold'}} >{this.state.title}</Typography>

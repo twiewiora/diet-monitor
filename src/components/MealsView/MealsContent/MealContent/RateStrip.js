@@ -16,10 +16,7 @@ class RateStrip extends Component {
     }
 
     changeMood (value) {
-        this.setState({
-            checkedMood: this.state.checkedMood === value ? 0 : value
-        });
-        this.props.onMoodCheck(this.props.meal, this.state.checkedMood)
+        this.props.onMoodCheck(this.props.meal, value)
     }
 
     render() {
@@ -29,15 +26,15 @@ class RateStrip extends Component {
         return (
             <List dense>
                 <ListItem button onClick={() => this.changeMood(1)}>
-                    <Smile style={{borderRadius:'50%', background: this.state.checkedMood === 1 ? goodColor : '#FFFFFF'}}/>
+                    <Smile style={{borderRadius:'50%', background: this.props.meal.mood === 1 ? goodColor : '#FFFFFF'}}/>
                 </ListItem>
                 <ListItem button onClick={() => this.changeMood(2)} >
-                    <div style={{borderRadius:'50%', background: this.state.checkedMood === 2 ? mehColor : '#FFFFFF'}}>
+                    <div style={{borderRadius:'50%', background: this.props.meal.mood === 2 ? mehColor : '#FFFFFF'}}>
                         <MehFace/>
                     </div>
                 </ListItem>
                 <ListItem button onClick={() => this.changeMood(3)}>
-                    <Sad style={{borderRadius:'50%', background: this.state.checkedMood === 3 ? badColor : '#FFFFFF'}}/>
+                    <Sad style={{borderRadius:'50%', background: this.props.meal.mood === 3 ? badColor : '#FFFFFF'}}/>
                 </ListItem>
                 <ListItem button>
                     <More />

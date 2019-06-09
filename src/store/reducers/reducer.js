@@ -74,7 +74,7 @@ const editMeal = (state, action) => {
 };
 
 const checkMood = (state, action) => {
-    if (action.path[0] === undefined) {
+    if (action.path[0].day === undefined || action.path[0].meal === undefined) {
         return {...state, meals: state.meals}
     }
     const meal = state.meals[findIndex(state, action.path[0].day, action.path[0].meal)];

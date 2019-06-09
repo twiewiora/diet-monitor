@@ -25,7 +25,7 @@ class EditModal extends React.Component {
         const meal = this.props.mealToEdit;
         const ing = meal.ingredients[this.props.posInMealToEdit];
         ing.name = this.state.currentIngName;
-        ing.weight = this.state.currentIngWeight;
+        ing.weight = this.state.currentIngWeight !== '' ? this.state.currentIngWeight + 'g' : '0g';
         this.props.onMealEdited(meal, ing, this.props.posInMealToEdit);
         this.props.updateStateCB(false);
     };

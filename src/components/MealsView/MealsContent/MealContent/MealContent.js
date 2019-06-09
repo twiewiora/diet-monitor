@@ -15,16 +15,15 @@ class MealContent extends Component {
     }
 
     onItemClick1 = () => {
-        console.log('The link was clicked.');
         this.props.updateStateCB(true);
+        this.props.setMeal(this.props.index);
     };
 
     render() {
-        const ingredients =  this.props.meal? this.props.meal.ingredients: [];
-
+      const ingredients =  this.props.meal? this.props.meal.ingredients: [];
       return (
         <div className="MealContent">
-          <RateStrip />
+          <RateStrip meal={this.props.meal ? this.props.meal : []}/>
           <div style={{flexGrow: '1'}}>
             <div style={{display: 'flex', flexDirection: 'column', alignItems: 'center'}}>
               <Typography gutterBottom variant='h6' style={{fontWeight: 'bold'}} >{this.state.title}</Typography>
@@ -36,6 +35,7 @@ class MealContent extends Component {
                   weight={weight}
                   key={name + index + weight}
                   onRemove={() => this.props.onRemove(index)}
+                  onEdit={()  => this.props.onEdit(index)}
                 />)
               }
 

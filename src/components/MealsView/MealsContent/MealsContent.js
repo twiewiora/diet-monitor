@@ -5,7 +5,7 @@ import {ListItem, List} from '@material-ui/core';
 import MealContent from './MealContent/MealContent';
 import Divider from '@material-ui/core/Divider';
 import Hints from './Hints';
-import {REMOVE_INGREDIENT} from '../../../store/actions/action';
+import {REMOVE_INGREDIENT} from '../../../store/actions/actionType';
 import {connect} from 'react-redux';
 
 class MealsContent extends Component {
@@ -16,12 +16,18 @@ class MealsContent extends Component {
 
   findMeal = (dayMeals, no) => {
     return dayMeals.find(meal => meal.meal === no);
-  }
+  };
 
   findIndex = ({day, meal}) => {
     const meals = this.props.meals;
     return meals.findIndex(elem => elem.day === day && elem.meal === meal);
-  }
+  };
+
+  onIngredientEdit = (mealId, pos) => {
+    const meal = this.props.meals[mealId];
+    this.props.setIngredientsToEdit(meal, pos);
+    this.props.updateStateEditMeal(true);
+  };
 
   render() {
       const now = this.props.date;
@@ -33,9 +39,10 @@ class MealsContent extends Component {
             {this.meals.map((meal, index) =>
               [
                 <ListItem key={meal + index + 'meal'}>
-                  <MealContent title={meal} updateStateCB={this.props.updateStateCB}
+                  <MealContent title={meal} updateStateCB={this.props.updateStateAddMeal} setMeal={this.props.setMeal} index={index}
                     meal={this.findMeal(dayMeals,index)}
                     onRemove={(pos) => this.props.onIngredientRemoved(this.findIndex(this.findMeal(dayMeals, index)), pos)}
+                    onEdit ={(pos) => this.onIngredientEdit(this.findIndex(this.findMeal(dayMeals, index)), pos)}
                   />
                 </ListItem>,
                 <Divider key={meal + index + 'divider'} />
@@ -48,12 +55,10 @@ class MealsContent extends Component {
   }
 }
 
-
 const mapStateToProps = state => {
   return {
     meals: state.meals
   };
-
 };
 
 const mapDispatchToProps = dispatch => {
@@ -61,6 +66,5 @@ const mapDispatchToProps = dispatch => {
     onIngredientRemoved: (meal, ing) => dispatch({type: REMOVE_INGREDIENT, path: [meal, ing]})
   };
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(MealsContent);

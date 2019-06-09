@@ -6,9 +6,9 @@ import MuiThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
 import {createMuiTheme} from '@material-ui/core';
 import {Provider} from 'react-redux';
 import {createStore} from 'redux';
-import reducer from './store/reducers/reducer';
+import reducer, {initialState} from './store/reducers/reducer';
 
-const store = createStore(reducer);
+const store = createStore(reducer, initialState);
 
 const App = () =>  (
   <Provider store={store}>

@@ -4,6 +4,11 @@
     justify-content: space-between;
 }
 
+.MainContent {
+    margin-left: 5%;
+    margin-right: 5%;
+}
+
 .TabHeader {
     font-size: 20px;
     font-weight: bold;

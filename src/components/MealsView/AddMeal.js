@@ -2,6 +2,7 @@ import React from 'react';
 import {ADD_MEAL} from "../../store/actions/actionType";
 import connect from "react-redux/es/connect/connect";
 import MealForm from "./MealForm";
+import {ToastsStore} from 'react-toasts';
 
 class SimpleModal extends React.Component {
     constructor(props) {
@@ -64,6 +65,7 @@ class SimpleModal extends React.Component {
       this.setState({
           ingredientsList: [...this.state.ingredientsList, ingredient]
       });
+      ToastsStore.success('Dodano nowy posiłek.');
   }
 
   render() {

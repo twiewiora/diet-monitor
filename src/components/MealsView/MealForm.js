@@ -13,6 +13,7 @@ import Typography from "@material-ui/core/Typography/Typography";
 import MuiDialogContent from "@material-ui/core/DialogContent/DialogContent";
 import MuiDialogActions from "@material-ui/core/DialogActions/DialogActions";
 import PropTypes from "prop-types";
+import {ToastsContainer, ToastsStore, ToastsContainerPosition} from "react-toasts";
 
 const styles = theme => ({
     paper: {
@@ -94,6 +95,7 @@ class MealForm extends React.Component {
                                 <FormControl type="text" placeholder="waga (g)" onChange={(e) => this.props.handleWeightChange(e)}/>
                             </FormGroup>
                             <Button variant="contained" color="primary" onClick={() => this.props.addIngredients()}>{this.props.buttonText}</Button>
+                            <ToastsContainer store={ToastsStore} position={ToastsContainerPosition.TOP_CENTER}/>
                         </Form>
                     </DialogContent>
                     <DialogActions>

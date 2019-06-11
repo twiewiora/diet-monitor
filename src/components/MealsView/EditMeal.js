@@ -2,6 +2,7 @@ import React from 'react';
 import {EDIT_MEAL} from "../../store/actions/actionType";
 import connect from "react-redux/es/connect/connect";
 import MealForm from "./MealForm";
+import {ToastsStore} from "react-toasts";
 
 class EditModal extends React.Component {
     constructor(props) {
@@ -43,6 +44,7 @@ class EditModal extends React.Component {
     };
 
     addIngredients() {
+        ToastsStore.success('Zapisano posiłek.');
     }
 
     render() {

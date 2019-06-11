@@ -20,6 +20,13 @@ class ArrowDatePicker extends React.Component {
     this.props.onDateChange(this.state.date);
   }
 
+  setDate(event) {
+      let parts = event.target.value.split('-');
+      let currentDate = new Date(parts[0], parts[1] - 1, parts[2]);
+      this.state.date.setDate(currentDate.getDate());
+      this.props.onDateChange(this.state.date);
+  }
+
   render() {
     return (
       <div className="ArrowDatePicker">
@@ -28,12 +35,12 @@ class ArrowDatePicker extends React.Component {
           id="date"
           type="date"
           value={this.state.date.toISOString().slice(0, 10)}
+          onChange={e => this.setDate(e)}
         />
         <IconButton onClick={() => this.changeDate(1)}><Right fontSize="large"/></IconButton>
       </div>);
   }
 
 }
-
 
 export default ArrowDatePicker;
